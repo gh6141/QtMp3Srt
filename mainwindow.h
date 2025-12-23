@@ -33,6 +33,16 @@ private slots:
     void saveLastPlayed(const QString &fileName);
     void restoreLastPlayed();
 
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
 private:
     Ui::MainWindow *ui;
     void saveSettings();
@@ -47,8 +57,12 @@ private:
     void loadSrt(const QString &mp3Path);
     void updateSubtitle(qint64 positionMs);
 
-   // QMediaPlayer *player = nullptr;
-   // QAudioOutput *audio  = nullptr;
+
+   void rewindMs(qint64 ms);
+   QString formatTime(qint64 ms);
+
+   void searchSelectedWord();
+   void setupContextMenu();
 #endif
 };
 #endif // MAINWINDOW_H

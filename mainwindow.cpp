@@ -11,6 +11,11 @@
 #include <QFile>
 #include <QTextStream>
 #include <QRegularExpression>
+#include <QShortcut>
+
+#include <QDesktopServices>
+
+#include <QTextCursor>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -51,6 +56,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui->textEdit->setStyleSheet(
         "font-size: 24px; background: black; color: white;"
         );
+
+   // new QShortcut(QKeySequence(Qt::Key_Left), this, [this](){
+   //     rewindMs(5000);
+   // });
+
+    // MainWindow コンストラクタ内
+    auto rewind5 = new QShortcut(QKeySequence(Qt::Key_Left), this);
+    connect(rewind5, &QShortcut::activated, this, [this](){
+        rewindMs(5000);
+    });
+
+    auto forward5 = new QShortcut(QKeySequence(Qt::Key_Right), this);
+    connect(forward5, &QShortcut::activated, this, [this](){
+        player->setPosition(player->position() + 5000);
+    });
+
 }
 
 MainWindow::~MainWindow()
@@ -129,7 +150,8 @@ void MainWindow::on_listView_doubleClicked(const QModelIndex &index)
       loadSrt(fullPath);   // ← 追加
     saveLastPlayed(fileName);   // ← 保存
 
-
+      // 再生ボタン押した直後
+      ui->textEdit->setFocus();
 }
 
 void MainWindow::saveLastPlayed(const QString &fileName)
@@ -244,6 +266,7 @@ void MainWindow::loadSrt(const QString &mp3Path)
 
 void MainWindow::updateSubtitle(qint64 positionMs)
 {
+    ui->labelTime->setText(formatTime(positionMs));
 
   //  qDebug() << "positionMs =" << positionMs;
 
@@ -274,5 +297,98 @@ void MainWindow::updateSubtitle(qint64 positionMs)
     // 該当なし
     ui->textEdit->clear();
     lastIndex = -1;
+
+
+}
+
+void MainWindow::rewindMs(qint64 ms)
+{
+    if (!player)
+        return;
+
+    qint64 pos = player->position();
+    qint64 newPos = pos - ms;
+
+    if (newPos < 0)
+        newPos = 0;
+
+    player->setPosition(newPos);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    rewindMs(5000);
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    rewindMs(10000);
+}
+
+QString MainWindow::formatTime(qint64 ms)
+{
+    qint64 sec = ms / 1000;
+    int s = sec % 60;
+    int m = (sec / 60) % 60;
+    int h = sec / 3600;
+
+    if (h > 0)
+        return QString("%1:%2:%3")
+            .arg(h, 2, 10, QChar('0'))
+            .arg(m, 2, 10, QChar('0'))
+            .arg(s, 2, 10, QChar('0'));
+    else
+        return QString("%1:%2")
+            .arg(m, 2, 10, QChar('0'))
+            .arg(s, 2, 10, QChar('0'));
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+     rewindMs(-10000);
+}
+
+void MainWindow::searchSelectedWord()
+{
+    QString word = ui->textEdit->textCursor().selectedText().trimmed();
+    if(word.isEmpty())
+        return;
+
+    // URLエンコードして安全に
+    QString encoded = QUrl::toPercentEncoding(word);
+
+    // 例: dictionary.com を開く
+    //QDesktopServices::openUrl(QUrl("https://www.dictionary.com/browse/" + encoded));
+    QDesktopServices::openUrl(QUrl("https://ejje.weblio.jp/content/" + encoded));
+}
+
+void MainWindow::setupContextMenu()
+{
+    ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->textEdit, &QWidget::customContextMenuRequested, this,
+            [this](const QPoint &pos){
+                QMenu menu;
+                QAction* search = menu.addAction("選択単語を検索");
+                connect(search, &QAction::triggered, this, &MainWindow::searchSelectedWord);
+                menu.exec(ui->textEdit->mapToGlobal(pos));
+            });
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    if(player->playbackState() == QMediaPlayer::PlayingState)
+        player->pause();
+    else
+        player->play();
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    searchSelectedWord();
 }
 
