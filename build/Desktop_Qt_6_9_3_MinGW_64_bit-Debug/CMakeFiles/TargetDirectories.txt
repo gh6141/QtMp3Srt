@@ -1,0 +1,9 @@
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/QtMp3Srt.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/install.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/QtMp3Srt_autogen_timestamp_deps.dir
+C:/Users/sakat/Documents/Qt/QtMp3Srt/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/QtMp3Srt_autogen.dir

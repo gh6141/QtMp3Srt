@@ -1,0 +1,25 @@
+# ビルド結果
+build-*/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.pdb
+*.log
+
+# Qt プロジェクト固有
+*.pro.user
+*.qmake.stash
+*.moc
+*.rcc
+*.ui.h
+
+# OS 固有ファイル
+.DS_Store
+Thumbs.db
+CMakeLists.txt.user
+
+vndiary.db
