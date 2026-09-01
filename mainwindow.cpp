@@ -54,8 +54,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->textEdit->setReadOnly(true);
     ui->textEdit->setAlignment(Qt::AlignCenter);
     ui->textEdit->setStyleSheet(
-        "font-size: 24px; background: black; color: white;"
+        "font-size: 38px; background: black; color: white;"
         );
+
 
    // new QShortcut(QKeySequence(Qt::Key_Left), this, [this](){
    //     rewindMs(5000);
@@ -257,12 +258,51 @@ void MainWindow::loadSrt(const QString &mp3Path)
         subtitles.append(sub);
 
 
-
-
-
-
     }
 }
+
+void MainWindow::updateSubtitle(qint64 positionMs)
+{
+    ui->labelTime->setText(formatTime(positionMs));
+
+    if (subtitles.isEmpty()) {
+        qDebug() << "subtitles empty";
+        return;
+    }
+
+    static int lastIndex = -1;
+
+    for (int i = 0; i < subtitles.size(); ++i) {
+        const auto &sub = subtitles[i];
+
+        // 現在の時間に該当する字幕が見つかった場合
+        if (positionMs >= sub.startMs && positionMs <= sub.endMs) {
+            if (i != lastIndex) {
+                QString displayRules = "";
+
+                // 1つ目の塊（1つ前の字幕）があれば、最初に改行付きで追加
+                if (i - 1 >= 0) {
+                    displayRules += subtitles[i - 1].text + "\n\n";
+                }
+
+                // 2つ目の塊（現在の字幕）を後ろに結合
+                displayRules += sub.text;
+
+                ui->textEdit->setPlainText(displayRules);
+                lastIndex = i;
+            }
+            return;
+        }
+    }
+
+    // 該当する字幕がない（セリフの合間など）場合
+    if (lastIndex != -1) {
+        ui->textEdit->clear();
+        lastIndex = -1;
+    }
+}
+
+/*
 
 void MainWindow::updateSubtitle(qint64 positionMs)
 {
@@ -300,6 +340,7 @@ void MainWindow::updateSubtitle(qint64 positionMs)
 
 
 }
+*/
 
 void MainWindow::rewindMs(qint64 ms)
 {

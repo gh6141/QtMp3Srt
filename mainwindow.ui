@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>920</width>
-    <height>600</height>
+    <width>1187</width>
+    <height>713</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,35 +40,35 @@
    <widget class="QListView" name="listView">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>30</x>
       <y>80</y>
-      <width>431</width>
-      <height>431</height>
+      <width>251</width>
+      <height>591</height>
      </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>330</x>
       <y>90</y>
-      <width>341</width>
-      <height>211</height>
+      <width>831</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>36</pointsize>
      </font>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>320</y>
-      <width>71</width>
-      <height>31</height>
+      <x>350</x>
+      <y>580</y>
+      <width>91</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -78,10 +78,10 @@
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>320</y>
-      <width>61</width>
-      <height>31</height>
+      <x>470</x>
+      <y>580</y>
+      <width>111</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -109,10 +109,10 @@
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>320</y>
-      <width>71</width>
-      <height>31</height>
+      <x>760</x>
+      <y>580</y>
+      <width>121</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -122,10 +122,10 @@
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>323</y>
-      <width>75</width>
-      <height>31</height>
+      <x>610</x>
+      <y>580</y>
+      <width>121</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -151,7 +151,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>920</width>
+     <width>1187</width>
      <height>22</height>
     </rect>
    </property>

@@ -44,7 +44,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(920, 600);
+        MainWindow->resize(1187, 713);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         lineEdit = new QLineEdit(centralwidget);
@@ -55,19 +55,19 @@ public:
         pushButton->setGeometry(QRect(680, 30, 91, 24));
         listView = new QListView(centralwidget);
         listView->setObjectName("listView");
-        listView->setGeometry(QRect(50, 80, 431, 431));
+        listView->setGeometry(QRect(30, 80, 251, 591));
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(540, 90, 341, 211));
+        textEdit->setGeometry(QRect(330, 90, 831, 451));
         QFont font;
-        font.setPointSize(12);
+        font.setPointSize(36);
         textEdit->setFont(font);
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(540, 320, 71, 31));
+        pushButton_2->setGeometry(QRect(350, 580, 91, 51));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(620, 320, 61, 31));
+        pushButton_3->setGeometry(QRect(470, 580, 111, 51));
         labelTime = new QLabel(centralwidget);
         labelTime->setObjectName("labelTime");
         labelTime->setGeometry(QRect(540, 60, 101, 31));
@@ -76,17 +76,17 @@ public:
         labelTime->setFont(font1);
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(800, 320, 71, 31));
+        pushButton_4->setGeometry(QRect(760, 580, 121, 51));
         pushButton_5 = new QPushButton(centralwidget);
         pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(700, 323, 75, 31));
+        pushButton_5->setGeometry(QRect(610, 580, 121, 51));
         pushButton_6 = new QPushButton(centralwidget);
         pushButton_6->setObjectName("pushButton_6");
         pushButton_6->setGeometry(QRect(650, 60, 71, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 920, 22));
+        menubar->setGeometry(QRect(0, 0, 1187, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
