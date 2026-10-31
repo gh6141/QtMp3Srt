@@ -127,14 +127,47 @@ void MainWindow::updateMp3List(const QString &dirPath)
     QStringList filters;
     filters << "*.mp3" << "*.MP3";
 
+    // entryListでの自動ソートは行わず、NoSort で取得
     QStringList files = dir.entryList(
         filters,
         QDir::Files | QDir::Readable,
-        QDir::Name   // ソート
+        QDir::NoSort
         );
 
+    // グループ名と日付(yyyy-mm-dd)を抜き出す正規表現（大文字小文字を区別しない）
+    // キャプチャ1: (.*) = グループ名
+    // キャプチャ2: (\d{4}-\d{2}-\d{2}) = 日付
+    QRegularExpression re("^(.*)_(\\d{4}-\\d{2}-\\d{2})-\\d{2}_\\d{2}\\.mp3$", QRegularExpression::CaseInsensitiveOption);
+
+    // 日付優先のカスタムソートを実行
+    std::sort(files.begin(), files.end(), [&](const QString &a, const QString &b) {
+        auto ma = re.match(a);
+        auto mb = re.match(b);
+
+        // 指定のファイル名形式にマッチしないものが混ざっていた場合は、全体のファイル名で比較
+        if (!ma.hasMatch() || !mb.hasMatch()) {
+            return a < b;
+        }
+
+        QString dateA = ma.captured(2); // yyyy-mm-dd
+        QString dateB = mb.captured(2); // yyyy-mm-dd
+
+        // 1. 日付を比較（最優先）
+        if (dateA != dateB) {
+            return dateA < dateB;
+        }
+
+        // 2. 日付が同じならグループ名を比較
+        QString groupA = ma.captured(1);
+        QString groupB = mb.captured(1);
+
+        return groupA < groupB;
+    });
+
+    // ソートが完了したリストをListViewのモデルに反映
     mp3Model->setStringList(files);
 }
+
 
 
 void MainWindow::on_listView_doubleClicked(const QModelIndex &index)
